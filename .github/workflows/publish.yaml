@@ -65,7 +65,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}},value=${{ steps.semantic.outputs.new_release_version }},enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
             type=semver,pattern={{major}},value=${{ steps.semantic.outputs.new_release_version }},enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
 
-            type=raw,value=latest,enable=${{is_default_branch  && steps.semantic.outputs.new_release_published == 'true' }}
+            type=raw,value=latest,enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
 
       - name: Build and push
         if: steps.meta.outputs.tags != ''
