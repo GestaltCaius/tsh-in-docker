@@ -84,7 +84,7 @@ cd tsh-in-docker
 You can override the default versions using `--build-arg` flags.
 
 ```bash
-# Example: Build with a different version of k9s
+# Example: Build with a different version of tsh
 docker build \
   --build-arg TELEPORT_VERSION=17.4.8 \
   -t tsh:17.4.8 .
