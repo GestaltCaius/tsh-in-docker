@@ -104,4 +104,4 @@ Contributions are welcome\! Please feel free to open an issue or submit a pull r
 
 ## 📜 License
 
-This project is licensed under the **GPLv3** - see the `LICENSE` file for details.
+This project is licensed under the **AGPLv3** - see the `LICENSE` file for details.
