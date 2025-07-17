@@ -57,8 +57,6 @@ jobs:
           images: |
             ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
           tags: |
-            type=ref,event=branch
-
             type=raw,value=${{ github.head_ref }},enable=${{ github.event_name == 'pull_request' }}
 
             type=semver,pattern={{version}},value=${{ steps.semantic.outputs.new_release_version }},enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
