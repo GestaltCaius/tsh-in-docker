@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - "**" # all branches to include feature branches
 
   pull_request:
     branches: ["main"]
@@ -60,16 +59,20 @@ jobs:
           tags: |
             type=ref,event=branch
 
+            type=raw,value=${{ github.head_ref }},enable=${{ github.event_name == 'pull_request' }}
+
             type=semver,pattern={{version}},value=${{ steps.semantic.outputs.new_release_version }},enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
             type=semver,pattern={{major}}.{{minor}},value=${{ steps.semantic.outputs.new_release_version }},enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
             type=semver,pattern={{major}},value=${{ steps.semantic.outputs.new_release_version }},enable=${{ steps.semantic.outputs.new_release_published == 'true' }}
 
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{is_default_branch  && steps.semantic.outputs.new_release_published == 'true' }}
 
       - name: Build and push
         if: steps.meta.outputs.tags != ''
         uses: docker/build-push-action@v6
         with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: .
           push: ${{ github.event_name == 'push' }}
           tags: ${{ steps.meta.outputs.tags }}
