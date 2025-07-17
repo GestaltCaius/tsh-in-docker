@@ -4,7 +4,7 @@
 ---
 
 <p align="center">
-<img alt="Logo Banner" src="assets/banner.jpg?sanitize=true height="250"/>
+<img alt="Logo Banner" src="assets/banner.jpg?sanitize=true" height="300"/>
 </p>
 
 <br/>
