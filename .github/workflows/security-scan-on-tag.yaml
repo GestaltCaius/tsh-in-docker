@@ -1,0 +1,63 @@
+name: Docker Image Security Scan on Tag
+
+on:
+  push:
+    # tags:
+    #   - "v*.*.*"
+
+  workflow_dispatch:
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      security-events: write # SARIF files
+
+    env:
+      # DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}
+      DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:1.1.0
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Hadolint Dockerfile linter
+        uses: reviewdog/action-hadolint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          fail_on_error: true
+
+      - name: Run Trivy vulnerability scan
+        if: ${{ always() }}
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.DOCKER_IMAGE_TO_SCAN }}
+          format: "sarif"
+          output: "trivy-results.sarif"
+          exit-code: "1"
+          severity: "CRITICAL,HIGH"
+          scanners: "vuln,secret,misconfig"
+
+      - name: Upload Trivy SARIF results to GitHub Security tab
+        if: ${{ always() }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "trivy-results.sarif"
+
+      - name: Run Snyk container scan
+        if: ${{ always() }}
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: ${{ env.DOCKER_IMAGE_TO_SCAN }}
+          args: --severity-threshold=high --file=Dockerfile --sarif-output=snyk-results.sarif --project-name=${{ github.event.repository.name }}
+
+      - name: Upload Snyk SARIF results to GitHub Security tab
+        if: ${{ always() }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "snyk-results.sarif"
