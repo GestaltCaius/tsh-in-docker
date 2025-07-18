@@ -4,27 +4,22 @@
 ---
 
 <p align="center">
-<img alt="Logo Banner" src="assets/banner.jpg?sanitize=true" height="300"/>
+<img alt="Logo Banner" src="https://raw.githubusercontent.com/GestaltCaius/tsh-in-docker/refs/tags/v1.1.0/assets/banner.jpg?sanitize=true" height="300"/>
 </p>
 
 <br/>
 <br/>
 
 <p align="center">
-
 <a href="https://hub.docker.com/r/uncookedconcept/tsh-in-docker">
 <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/uncookedconcept/tsh-in-docker?logo=docker&color=lightblue">
 </a>
-
-
 <a href="https://github.com/GestaltCaius/tsh-in-docker/releases">
 <img alt="Current Release" src="https://img.shields.io/github/release/GestaltCaius/tsh-in-docker.svg"/>
 </a>
-
 <a href="https://github.com/GestaltCaius/tsh-in-docker/actions/workflows/publish.yaml">
 <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/GestaltCaius/tsh-in-docker/publish.yaml?label=release%20CI">
 </a>
-
 </p>
 
 ---
