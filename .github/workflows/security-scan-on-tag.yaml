@@ -17,7 +17,7 @@ jobs:
 
     env:
       # DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}
-      DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:v1.1.0
+      DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:1.1.0
 
     steps:
       - name: Checkout code
