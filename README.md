@@ -4,7 +4,7 @@
 ---
 
 <p align="center">
-<img alt="Logo Banner" src="assets/banner.jpg?sanitize=true" height="300"/>
+<img alt="Logo Banner" src="https://raw.githubusercontent.com/GestaltCaius/tsh-in-docker/refs/tags/v1.1.0/assets/banner.jpg?sanitize=true" height="300"/>
 </p>
 
 <br/>
@@ -15,7 +15,6 @@
 <a href="https://hub.docker.com/r/uncookedconcept/tsh-in-docker">
 <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/uncookedconcept/tsh-in-docker?logo=docker&color=lightblue">
 </a>
-
 
 <a href="https://github.com/GestaltCaius/tsh-in-docker/releases">
 <img alt="Current Release" src="https://img.shields.io/github/release/GestaltCaius/tsh-in-docker.svg"/>
