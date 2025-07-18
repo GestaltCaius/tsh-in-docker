@@ -2,8 +2,8 @@ name: Docker Image Security Scan on Tag
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    # tags:
+    #   - "v*.*.*"
 
   workflow_dispatch:
 
@@ -16,7 +16,8 @@ jobs:
       security-events: write # SARIF files
 
     env:
-      DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}
+      # DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}
+      DOCKER_IMAGE_TO_SCAN: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:v1.1.0
 
     steps:
       - name: Checkout code
